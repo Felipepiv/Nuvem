@@ -17,3 +17,21 @@ No momento que a chamada de sistema é invocada, ocorre um mecanismo detalhado:
 # Parte b: Diagnosticando o Escalonador
 
 O algoritimo FCFS está causando o "congelamento" da interface porque ele processa as requisições estritamente na ordem de chegada, sem interrupções. Se um processo longo ou pesado entra na fila antes de uma requisição simples da interface web, a interface precisa esperar o processo longo terminar para ser atendida.
+
+Como esses relatórios demoram muito tempo processando, as requisições web rápidas ficam presas na fila de espera. Assim, o servidor não consegue processar e responder o clique dele até que todo relatório anterior termine.
+
+Um algoritmo é Não preemptivo quando o sistema operacional não interrompe uma tarefa a força que está rodando na CPU. Quando o algoritmo ganha o processador, ele mesmo irá ditar o ritmo: só sai daí se terminar ou se for bloqueado por uma operação de E/S.
+
+Para os processos interativos, o impacto pode ser devastador em um cenário de núcleo único:
+
+. Monopólio da CPU: Mesmo que o processo interativo precise de apenas 2 milissegundo de CPU para responder o usuário, ele é obrigado a esperar minutos para que o processo batch libere o núcleo.
+
+. Ineficiência com I/O (disco): Em sistemas não preemptivos, enquanto o processo batch espera o disco responder, a CPU pode ficar ociosa sem poder adiantar os processos interativos que estão na fila prontos para rodar.
+
+# Parte C: Propondo a Solução
+
+Para resolver o problema de responsividade do CloudData, o escalonamento mais adequado é o Roud-Robin.Como a aplicação roda em um servidor de núcleo único, o Roud-Robin vai garantir que a CPU seja compartilhada de forma justa e rápida entre processos impedindo que relatórios financeiros pesados bloqueiem a interface web.
+
+Para configurar o escalonamento no sistema, os administradores não costumam programar do zero, pois o núcleo do SO (Kernel) possui políticas nativas fortemente otimizadas. Já as configurações são feitas das seguintes formas:
+
+. Alteração de política de tempo real:
