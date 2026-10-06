@@ -34,4 +34,18 @@ Para resolver o problema de responsividade do CloudData, o escalonamento mais ad
 
 Para configurar o escalonamento no sistema, os administradores não costumam programar do zero, pois o núcleo do SO (Kernel) possui políticas nativas fortemente otimizadas. Já as configurações são feitas das seguintes formas:
 
-. Alteração de política de tempo real:
+. Alteração de política de tempo real:  O linux possui como SCHED_RR (Roud-Robin para tempo real) e SCHED_FIFO (similar ao FCFS). È possível associar um processo a uma dessas politicas utilizando o comando chrt (Change Real-time attributes)
+
+. Ajuste de prioridades: Para o agregador padrão do linux, usa-se o conceito de nice. O comando nicedefine a prioridade de um processo de -20 a 19.
+
+. Contêineres e grupos de controle: a alocação de tempo em servidores modernos é feita limitando recursos por meio de ferramentas como docker ou kubernetes. Assim, podendo definir que os processos batch usem apenas uma fração máxima dos ciclos de CPU.
+
+#### Por que o roud-Robin?
+
+Para o cloudData, usaremos o Roud-Robin para que os processos interativos possam realizar requisições rápidas, liberam a CPU voluntariamente antes que o quantum terminar. Já os realátorios pesados esgotarão o seu quantum e serão interrompidos constantemente. Com isso, se cria uma ilusão de paralismo, garantindo que o usuário da interface receba uma resposta imediata.
+
+#### Starvation
+
+. È um problema de gerência onde os processos prontos para ser executados são privadosde usar a CPU, porque outros processos com maior prioridade ou menor tempo estão passando á sua frente na fila.
+
+. Para solucionar o Starvation, O SO utiliza uma técnica chamada Aging. Esse mecanismo aumenta gradualmente a prioridade dps processos que passam muito tempo esperando na fila de pronto.
