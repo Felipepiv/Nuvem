@@ -14,6 +14,8 @@ No momento que a chamada de sistema é invocada, ocorre um mecanismo detalhado:
 
 . Retorno: Assim que o sistema operacional termina de ler os dados, o processo reverte o nível de privilégio de volta para o modo usuário.
 
+![](image.png)
+
 # Parte b: Diagnosticando o Escalonador
 
 O algoritimo FCFS está causando o "congelamento" da interface porque ele processa as requisições estritamente na ordem de chegada, sem interrupções. Se um processo longo ou pesado entra na fila antes de uma requisição simples da interface web, a interface precisa esperar o processo longo terminar para ser atendida.
