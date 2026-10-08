@@ -30,6 +30,8 @@ Para os processos interativos, o impacto pode ser devastador em um cenário de n
 
 . Ineficiência com I/O (disco): Em sistemas não preemptivos, enquanto o processo batch espera o disco responder, a CPU pode ficar ociosa sem poder adiantar os processos interativos que estão na fila prontos para rodar.
 
+![](FCFS.jpg)
+
 # Parte C: Propondo a Solução
 
 Para resolver o problema de responsividade do CloudData, o escalonamento mais adequado é o Roud-Robin.Como a aplicação roda em um servidor de núcleo único, o Roud-Robin vai garantir que a CPU seja compartilhada de forma justa e rápida entre processos impedindo que relatórios financeiros pesados bloqueiem a interface web.
@@ -51,3 +53,21 @@ Para o cloudData, usaremos o Roud-Robin para que os processos interativos possam
 . È um problema de gerência onde os processos prontos para ser executados são privadosde usar a CPU, porque outros processos com maior prioridade ou menor tempo estão passando á sua frente na fila.
 
 . Para solucionar o Starvation, O SO utiliza uma técnica chamada Aging. Esse mecanismo aumenta gradualmente a prioridade dps processos que passam muito tempo esperando na fila de pronto.
+
+![](Roud-Robin.jpg)
+
+# REFERENCIAS:
+
+PROF. SANTIAGO - PROGRAMAÇÃO E CIÊNCIA. **Me Salva Sistemas Operacionais: O que é uma Chamada de Sistema?**. YouTube, 19 set. 2022. Disponível em: <https://youtu.be/T75QR4FbmyU>. Acesso em: 8 out. 2026.
+
+PROF. SANTIAGO - PROGRAMAÇÃO E CIÊNCIA. **Me Salva Sistemas Operacionais: Motivação para Utilização de Escalonamento de Processos**. YouTube, 12 nov. 2022. Disponível em: <https://youtu.be/BUnnIzc6_As>. Acesso em: 8 out. 2026.
+
+PROF. SANTIAGO - PROGRAMAÇÃO E CIÊNCIA. **Me Salva Sistemas Operacionais: O que é Preempção?**. YouTube, 13 nov. 2022. Disponível em: <https://youtu.be/vz_naJHFM7M>. Acesso em: 8 out. 2026.
+
+PROF. SANTIAGO - PROGRAMAÇÃO E CIÊNCIA. **Me Salva Sistemas Operacionais**. Playlist do YouTube. Disponível em: <https://youtube.com/playlist?list=PLBw9d_OueVJTGsjk1YYrq2KpxxLhzbjS->. Acesso em: 8 out. 2026.
+
+TANENBAUM, Andrew S.; BOS, Herbert. **Sistemas Operacionais Modernos**. 4. ed. São Paulo: Pearson, 2016. Disponível em: <https://www.kufunda.net/publicdocs/Sistemas%20Operacionais%20Modernos%20(Andrew%20S.%20Tanenbaum,%20Herbert%20Bos).pdf>. Acesso em: 8 out. 2026.
+
+NOME DO PODCAST. **Título do Episódio do Podcast 1**. Spotify, 2026. Podcast. Disponível em: <https://open.spotify.com/episode/5WZnsuMVXcFoDhDHMqzZJF>. Acesso em: 8 out. 2026.
+
+NOME DO PODCAST. **Título do Episódio do Podcast 2**. Spotify, 2026. Podcast. Disponível em: <https://open.spotify.com/episode/5aEbJ8PimGND6Q9Gd09Tqw>. Acesso em: 8 out. 2026.
